@@ -75,3 +75,11 @@ function twentytwentyfive_register_books_post_type() {
   register_post_type('book', $args);
 }  
 add_action('init', 'twentytwentyfive_register_books_post_type');
+
+// Flush rewrite rules on theme activation
+function flush_rewrite_on_activation() {
+  twentytwentyfive_register_genre_taxonomy();
+  twentytwentyfive_register_books_post_type();
+  flush_rewrite_rules();
+}
+add_action('after_switch_theme', 'flush_rewrite_on_activation');
