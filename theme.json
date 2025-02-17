@@ -728,6 +728,16 @@
 			"name": "page-no-title",
 			"postTypes": ["page"],
 			"title": "Page No Title"
+		},
+		{
+			"name": "single-book",
+			"postTypes": ["book"],
+			"title": "Single Book"	
+		},
+		{
+			"name": "taxonomy-book-genre",
+			"postTypes": ["book"],
+			"title": "Archive Book Genre"	
 		}
 	]
 }
