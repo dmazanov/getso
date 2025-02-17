@@ -186,3 +186,30 @@ if ( ! function_exists( 'twentytwentyfive_format_binding' ) ) :
 		}
 	}
 endif;
+
+// Register Custom Post Type
+include get_parent_theme_file_path( 'inc/custom-types.php' );
+
+// Register custom-fields for the book post type
+function register_book_meta() {
+	register_post_meta(
+		'book',
+		'publication_date',
+		array(
+			'show_in_rest'      => true,
+			'single'            => true,
+			'type'              => 'string'
+		)
+	);
+}
+add_action( 'init', 'register_book_meta' );
+
+// Ensure proper query parameters for genre archives
+function customize_genre_archive_query($query) {
+	if (!is_admin() && $query->is_main_query() && is_tax('genre')) {
+			$query->set('posts_per_page', 5);
+			$query->set('orderby', 'title');
+			$query->set('order', 'ASC');
+	}
+}
+add_action('pre_get_posts', 'customize_genre_archive_query');
