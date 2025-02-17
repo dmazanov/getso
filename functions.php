@@ -55,9 +55,39 @@ if ( ! function_exists( 'twentytwentyfive_enqueue_styles' ) ) :
 			array(),
 			wp_get_theme()->get( 'Version' )
 		);
+
+		// Enqueue custom styles.
+		wp_enqueue_style( 
+			'twentytwentyfive-custom',
+			get_parent_theme_file_uri( 'assets/css/custom.css' ),
+			array(),
+			wp_get_theme()->get( 'Version' ),
+			'all'
+		);
 	}
 endif;
 add_action( 'wp_enqueue_scripts', 'twentytwentyfive_enqueue_styles' );
+
+// Enqueues scripts.js on the front.
+if ( ! function_exists( 'twentytwentyfive_enqueue_scripts' ) ) :
+	/**
+	 * Enqueues scripts.js on the front.
+	 *
+	 * @since Twenty Twenty-Five 1.0
+	 *
+	 * @return void
+	 */
+	function twentytwentyfive_enqueue_scripts() {
+		wp_enqueue_script(
+			'twentytwentyfive-scripts',
+			get_parent_theme_file_uri( 'assets/js/scripts.js' ),
+			array('jquery'),
+			wp_get_theme()->get( 'Version' ),
+			true
+		);
+	}
+endif;
+add_action( 'wp_enqueue_scripts', 'twentytwentyfive_enqueue_scripts' );
 
 // Registers custom block styles.
 if ( ! function_exists( 'twentytwentyfive_block_styles' ) ) :
