@@ -190,6 +190,9 @@ endif;
 // Register Custom Post Type
 include get_parent_theme_file_path( 'inc/custom-types.php' );
 
+// Register Shortcodes
+include get_parent_theme_file_path( 'inc/shortcodes.php' );
+
 // Register custom-fields for the book post type
 function register_book_meta() {
 	register_post_meta(
